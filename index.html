@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f3a34">
+  <meta name="description" content="Trece meses juntos: el primer mes de nuestro segundo año.">
+  <title>13 meses, mi amor ❤️</title>
+  <style>
+    :root{
+      --pine:#1f3a34; --pine-deep:#142824; --cream:#fbf6ec; --paper:#fffdf8;
+      --gold:#d4a85a; --gold-soft:#f1dcae; --rose:#a8505f; --ink:#2b2a27; --muted:#6b675f;
+      --serif:Georgia,"Times New Roman",serif; --sans:"Segoe UI",system-ui,Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--cream);color:var(--ink);font:17px/1.65 var(--sans);overflow-x:hidden}
+    img{display:block;max-width:100%}
+    button{font:inherit}
+    :focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+
+    /* Portada */
+    .hero{position:relative;min-height:92vh;display:grid;place-items:center;padding:70px 20px;text-align:center;color:#fff;overflow:hidden;isolation:isolate;
+      background:radial-gradient(ellipse at 50% 30%,#2c5249 0%,var(--pine) 55%,var(--pine-deep) 100%)}
+    .hero::before{content:"";position:absolute;inset:0;z-index:-1;background:url('img/8.jpeg') center 30%/cover;opacity:.22;filter:saturate(.7)}
+    .hero::after{content:"";position:absolute;inset:16px;border:1px solid #f1dcae55;border-radius:26px;pointer-events:none}
+    .sparkle{position:absolute;z-index:-1;width:4px;height:4px;border-radius:50%;background:var(--gold-soft);opacity:0;animation:twinkle 4s ease-in-out infinite}
+    .hero-inner{max-width:760px}
+    .kicker{margin:0;color:var(--gold-soft);font:700 12px/1 var(--sans);letter-spacing:.26em;text-transform:uppercase}
+    .number{display:block;margin:22px auto 4px;font:400 clamp(120px,26vw,220px)/.85 var(--serif);color:transparent;-webkit-text-stroke:1.5px var(--gold);background:linear-gradient(180deg,var(--gold-soft),var(--gold));-webkit-background-clip:text;background-clip:text}
+    .hero h1{margin:8px 0 18px;font:400 clamp(36px,6.4vw,64px)/1.05 var(--serif);letter-spacing:-.02em}
+    .hero p.lead{max-width:600px;margin:0 auto 32px;font:clamp(17px,2.3vw,21px)/1.6 var(--serif);color:#f6efe0}
+    .btn{display:inline-flex;align-items:center;gap:10px;border:0;border-radius:999px;padding:14px 26px;background:var(--gold);color:var(--pine-deep);font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 14px 36px #0006;transition:transform .25s,background .25s}
+    .btn:hover{transform:translateY(-3px);background:#e4bd73}
+    .scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);color:var(--gold-soft);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;opacity:.8}
+
+    /* Secciones */
+    section{padding:90px 20px}
+    .wrap{width:min(1100px,100%);margin:0 auto}
+    .head{max-width:640px;margin:0 auto 46px;text-align:center}
+    .eyebrow{margin:0 0 12px;color:var(--rose);font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+    .head h2{margin:0 0 12px;font:400 clamp(32px,5vw,50px)/1.1 var(--serif);color:var(--pine)}
+    .head p{margin:0;color:var(--muted)}
+
+    /* Línea de tiempo corta */
+    .milestones{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:900px;margin:0 auto}
+    .milestone{padding:28px 24px;border:1px solid #e6dcc6;border-radius:18px;background:var(--paper);text-align:center}
+    .milestone b{display:block;font:400 44px/1 var(--serif);color:var(--gold)}
+    .milestone span{display:block;margin-top:8px;color:var(--muted);font-size:15px}
+
+    /* Galería tipo polaroid */
+    .gallery-section{background:linear-gradient(180deg,var(--cream),#f3eadb)}
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+    .polaroid{margin:0;padding:12px 12px 16px;background:#fff;border-radius:4px;box-shadow:0 10px 28px #3a2e1f22;cursor:zoom-in;transition:transform .35s,box-shadow .35s}
+    .polaroid:nth-child(4n+1){transform:rotate(-2.2deg)}
+    .polaroid:nth-child(4n+2){transform:rotate(1.6deg) translateY(14px)}
+    .polaroid:nth-child(4n+3){transform:rotate(-1deg) translateY(-6px)}
+    .polaroid:nth-child(4n+4){transform:rotate(2.4deg) translateY(8px)}
+    .polaroid:hover{transform:rotate(0) translateY(-6px) scale(1.03);box-shadow:0 22px 44px #3a2e1f33;z-index:2}
+    .polaroid img{width:100%;aspect-ratio:4/5;object-fit:cover;background:#e9e1d2}
+    .polaroid figcaption{margin-top:12px;text-align:center;font:italic 15px/1.35 var(--serif);color:var(--muted)}
+
+    /* Visor de fotos */
+    .viewer{border:0;padding:0;background:transparent;max-width:min(92vw,900px);max-height:92vh}
+    .viewer::backdrop{background:#0d1c19e6;backdrop-filter:blur(6px)}
+    .viewer img{max-height:80vh;width:auto;margin:0 auto;border:10px solid #fff;border-bottom-width:46px;border-radius:4px}
+    .viewer p{position:relative;margin:-38px 0 0;text-align:center;font:italic 16px var(--serif);color:var(--muted)}
+    .viewer-nav{display:flex;justify-content:center;gap:12px;margin-top:20px}
+    .viewer-nav button{width:46px;height:46px;border:1px solid #f1dcae88;border-radius:50%;background:#142824cc;color:#fff;cursor:pointer;font-size:20px}
+
+    /* Carta sorpresa */
+    .surprise{background:var(--pine);color:#fff}
+    .surprise .head h2{color:#fff}.surprise .head p{color:#d8e2dc}.surprise .eyebrow{color:var(--gold-soft)}
+    .envelope{position:relative;width:min(420px,88vw);aspect-ratio:3/2;margin:0 auto;cursor:pointer;border:0;padding:0;background:none;perspective:900px}
+    .env-back,.env-front,.env-flap{position:absolute;inset:0;border-radius:10px}
+    .env-back{background:#e8d6b0}
+    .env-front{background:linear-gradient(155deg,transparent 49.6%,#d9c08c 50%) left/50% 100% no-repeat,linear-gradient(205deg,transparent 49.6%,#d9c08c 50%) right/50% 100% no-repeat,linear-gradient(0deg,#e3cd9c 0 50%,transparent 50%);z-index:3}
+    .env-flap{z-index:4;transform-origin:top;clip-path:polygon(0 0,100% 0,50% 58%);background:#cfb37c;transition:transform .7s cubic-bezier(.6,.1,.3,1)}
+    .env-seal{position:absolute;z-index:5;left:50%;top:50%;width:62px;height:62px;margin:-31px 0 0 -31px;display:grid;place-items:center;border-radius:50%;background:var(--rose);color:#fff;font-size:26px;box-shadow:0 4px 12px #0004;transition:opacity .3s,transform .3s}
+    .env-paper{position:absolute;z-index:2;left:7%;right:7%;top:8%;bottom:8%;border-radius:6px;background:var(--paper);transition:transform .8s .35s cubic-bezier(.3,.8,.3,1)}
+    .envelope:hover .env-seal{transform:scale(1.08)}
+    .envelope.open .env-flap{transform:rotateX(180deg);z-index:1}
+    .envelope.open .env-seal{opacity:0;transform:scale(.6)}
+    .envelope.open .env-paper{transform:translateY(-46%)}
+    .env-hint{margin:26px 0 0;text-align:center;color:var(--gold-soft);font-size:14px;letter-spacing:.08em}
+
+    .letter{display:none;width:min(720px,100%);margin:46px auto 0;padding:clamp(30px,6vw,60px);border-radius:8px;color:var(--ink);
+      background:repeating-linear-gradient(var(--paper) 0 33px,#efe6d4 34px);box-shadow:0 30px 80px #0006}
+    .letter.show{display:block;animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+    .letter .date{margin:0 0 10px;text-align:center;color:var(--rose);font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase}
+    .letter h3{margin:0 0 26px;text-align:center;font:400 clamp(30px,5vw,44px)/1.15 var(--serif);color:var(--pine)}
+    .letter p{margin:0 0 16px;font:18px/1.85 var(--serif)}
+    .letter .sign{margin-top:28px;text-align:right;font:italic 22px var(--serif);color:var(--rose)}
+    .hearts{position:fixed;inset:0;pointer-events:none;z-index:50;overflow:hidden}
+    .hearts span{position:absolute;bottom:-40px;color:var(--rose);animation:float-up 3.4s ease-in forwards}
+
+    footer{padding:30px 20px 40px;text-align:center;color:var(--muted);font-size:13px;background:#f3eadb}
+
+    @keyframes twinkle{0%,100%{opacity:0;transform:scale(.6)}50%{opacity:.9;transform:scale(1)}}
+    @keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+    @keyframes float-up{0%{transform:translateY(0) rotate(0);opacity:1}100%{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+
+    @media(max-width:860px){.gallery{grid-template-columns:repeat(2,1fr);gap:20px}.milestones{grid-template-columns:1fr}}
+    @media(max-width:480px){section{padding:68px 16px}.gallery{gap:14px}.polaroid{padding:8px 8px 12px}.polaroid figcaption{font-size:13px}.letter p{font-size:17px}}
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation:none!important;transition-duration:.01ms!important}
+      .sparkle{opacity:.6}
+    }
+  </style>
+</head>
+<body>
+  <header class="hero" id="inicio">
+    <div class="hero-inner">
+      <p class="kicker">Diciembre · 2026</p>
+      <span class="number" aria-hidden="true">13</span>
+      <h1>El primer mes de nuestro segundo año</h1>
+      <p class="lead">Ya cumplimos un año, y aquí sigo: eligiéndola otra vez, con más ganas que nunca.</p>
+      <a class="btn" href="#carta">Tengo una sorpresa para usted 💌</a>
+    </div>
+    <a class="scroll-hint" href="#recuerdos">Nuestros recuerdos ↓</a>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Trece meses en números</p>
+          <h2>Lo que llevamos juntos</h2>
+        </div>
+        <div class="milestones">
+          <div class="milestone"><b>13</b><span>meses de historia</span></div>
+          <div class="milestone"><b id="dias">≈ 395</b><span>días a su lado</span></div>
+          <div class="milestone"><b>∞</b><span>razones para seguir</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="recuerdos">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Nuestro álbum</p>
+          <h2>Momentos que guardo en el corazón</h2>
+          <p>Toque cualquier foto para verla en grande.</p>
+        </div>
+        <div class="gallery">
+          <figure class="polaroid" tabindex="0"><img src="img/1.jpeg" alt="Una selfie juntos en la calle" loading="lazy"><figcaption>Nuestras salidas</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/2.jpeg" alt="Una selfie cariñosa en casa" loading="lazy"><figcaption>Un rato en casa</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/3.jpeg" alt="Una risa compartida en casa" loading="lazy"><figcaption>Esa risa suya</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/4.jpeg" alt="Una selfie juntos al aire libre" loading="lazy"><figcaption>Al atardecer</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/5.jpeg" alt="Un beso junto al automóvil" loading="lazy"><figcaption>Sus besitos</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/6.jpeg" alt="Un viaje juntos en automóvil" loading="lazy"><figcaption>De viaje juntos</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/7.jpeg" alt="Una selfie al aire libre entre árboles" loading="lazy"><figcaption>Siempre sonriendo</figcaption></figure>
+          <figure class="polaroid" tabindex="0"><img src="img/8.jpeg" alt="Un abrazo en casa" loading="lazy"><figcaption>Mi lugar favorito</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="surprise" id="carta">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Una carta sorpresa</p>
+          <h2>Algo que quería decirle</h2>
+          <p>Abra el sobre cuando esté lista.</p>
+        </div>
+        <button class="envelope" id="sobre" type="button" aria-controls="carta-texto" aria-expanded="false" aria-label="Abrir el sobre">
+          <span class="env-back"></span>
+          <span class="env-paper"></span>
+          <span class="env-front"></span>
+          <span class="env-flap"></span>
+          <span class="env-seal" aria-hidden="true">♥</span>
+        </button>
+        <p class="env-hint" id="pista">Toque el sobre para abrirlo</p>
+
+        <article class="letter" id="carta-texto" aria-live="polite">
+          <p class="date">Diciembre de 2026 · 13 meses</p>
+          <h3>Feliz mesiversario, mi vida</h3>
+          <p>Hace un mes celebramos nuestro primer año, y hoy empezamos a escribir el segundo. Trece meses parecen un número pequeño, pero en ellos caben tantas risas, abrazos, aprendizajes y momentos que ya no imagino mis días sin usted.</p>
+          <p>Gracias por quedarse, por cuidarme y por hacer que lo cotidiano se sienta especial. Me encanta la forma en que me mira, la paciencia que me tiene y cómo convierte cualquier plan sencillo en uno de mis recuerdos favoritos.</p>
+          <p>Este segundo año quiero vivirlo con más detalles, más aventuras y más tiempo juntos. Quiero seguir conociéndola, apoyándola en cada sueño y celebrando cada mes como si fuera el primero.</p>
+          <p>La amo mucho, mi reina. Gracias por ser mi compañera, mi alegría y mi lugar seguro. Feliz mesiversario número trece.</p>
+          <p class="sign">Con todo mi amor ♥</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>Hecho especialmente para usted · 13 meses ♥</footer>
+
+  <dialog class="viewer" id="visor" aria-label="Foto ampliada">
+    <img id="visor-img" src="" alt="">
+    <p id="visor-txt"></p>
+    <div class="viewer-nav">
+      <button type="button" id="prev" aria-label="Foto anterior">‹</button>
+      <button type="button" id="cerrar" aria-label="Cerrar">✕</button>
+      <button type="button" id="next" aria-label="Foto siguiente">›</button>
+    </div>
+  </dialog>
+  <div class="hearts" id="corazones" aria-hidden="true"></div>
+
+  <script>
+    // Destellos en la portada
+    const hero = document.querySelector('.hero');
+    for (let i = 0; i < 26; i++) {
+      const s = document.createElement('span');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 100 + '%';
+      s.style.top = Math.random() * 100 + '%';
+      s.style.animationDelay = (Math.random() * 4).toFixed(2) + 's';
+      hero.appendChild(s);
+    }
+
+    // Visor de fotos
+    const fotos = [...document.querySelectorAll('.polaroid')];
+    const visor = document.getElementById('visor');
+    const vImg = document.getElementById('visor-img');
+    const vTxt = document.getElementById('visor-txt');
+    let actual = 0;
+    function mostrar(i) {
+      actual = (i + fotos.length) % fotos.length;
+      const img = fotos[actual].querySelector('img');
+      vImg.src = img.src; vImg.alt = img.alt;
+      vTxt.textContent = fotos[actual].querySelector('figcaption').textContent;
+    }
+    fotos.forEach((f, i) => {
+      const abrir = () => { mostrar(i); visor.showModal(); };
+      f.addEventListener('click', abrir);
+      f.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrir(); } });
+    });
+    document.getElementById('prev').onclick = () => mostrar(actual - 1);
+    document.getElementById('next').onclick = () => mostrar(actual + 1);
+    document.getElementById('cerrar').onclick = () => visor.close();
+    visor.addEventListener('click', e => { if (e.target === visor) visor.close(); });
+    visor.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') mostrar(actual - 1);
+      if (e.key === 'ArrowRight') mostrar(actual + 1);
+    });
+
+    // Carta sorpresa
+    const sobre = document.getElementById('sobre');
+    const carta = document.getElementById('carta-texto');
+    const capa = document.getElementById('corazones');
+    const calma = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    sobre.addEventListener('click', () => {
+      if (sobre.classList.contains('open')) return;
+      sobre.classList.add('open');
+      sobre.setAttribute('aria-expanded', 'true');
+      document.getElementById('pista').textContent = 'Para usted, con todo mi amor';
+      setTimeout(() => {
+        carta.classList.add('show');
+        carta.scrollIntoView({ behavior: calma ? 'auto' : 'smooth', block: 'start' });
+      }, calma ? 0 : 1100);
+      if (!calma) {
+        for (let i = 0; i < 30; i++) {
+          const h = document.createElement('span');
+          h.textContent = '♥';
+          h.style.left = Math.random() * 100 + 'vw';
+          h.style.fontSize = (14 + Math.random() * 22) + 'px';
+          h.style.animationDelay = (Math.random() * 1.2).toFixed(2) + 's';
+          capa.appendChild(h);
+          setTimeout(() => h.remove(), 5000);
+        }
+      }
+    });
+  </script>
+</body>
+</html>
